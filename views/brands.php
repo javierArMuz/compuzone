@@ -2,11 +2,11 @@
 <?php include '../controllers/BrandController.php'; ?>
 
 <h2><?= isset($editing) && $editing ? 'Editar Marca' : 'Registrar Marca' ?></h2>
-<form method="POST" action="../controllers/BrandController.php">
+<form id="brandForm" method="POST" action="../controllers/BrandController.php">
   <?php if (!empty($editing) && $brand): ?>
     <input type="hidden" name="id" value="<?= (int)$brand['id'] ?>">
   <?php endif; ?>
-  <input type="text" name="name" placeholder="Nombre de la marca" required
+  <input type="text" name="name" placeholder="Nombre de la marca" minlength="2" maxlength="30" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{2,30}" required
     value="<?= htmlspecialchars($brand['name'] ?? '') ?>"><br>
 
   <button type="submit" name="<?= !empty($editing) ? 'update_brand' : 'create_brand' ?>">
